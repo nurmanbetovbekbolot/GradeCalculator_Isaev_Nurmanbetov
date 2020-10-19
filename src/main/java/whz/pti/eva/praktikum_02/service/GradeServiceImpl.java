@@ -7,6 +7,12 @@ import whz.pti.eva.praktikum_02.domain.GradeRepository;
 
 import java.util.List;
 
+/**
+ * The class GradeServiceImpl that implements GradeService interface.
+ * Here we place our business logic
+ *
+ * @author Isaev A. Nurmanbetov B.
+ */
 @Service
 public class GradeServiceImpl implements GradeService {
     @Autowired
