@@ -1,13 +1,50 @@
 package whz.pti.eva.praktikum_02;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import whz.pti.eva.praktikum_02.domain.GradeRepository;
+import whz.pti.eva.praktikum_02.service.GradeServiceImpl;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class GradeCalculatorIsaevNurmanbetovApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Autowired
+    GradeRepository gradeRepository;
+
+    @Autowired
+    GradeServiceImpl gradeServiceImpl;
+
+    @Test
+    void contextLoads() {
+    }
+
+    @Test
+    void calculateAverage() {
+        gradeServiceImpl.addGrade("Mathe", "3.0");
+        gradeServiceImpl.addGrade("Englisch", "2.5");
+        gradeServiceImpl.addGrade("EvA", "1.5");
+        gradeServiceImpl.addGrade("Wiss. Arbeiten", "1.0");
+        double a = gradeServiceImpl.calculateAverage();
+        assertThat(a).isEqualTo(2.0);
+        gradeRepository.deleteAll();
+    }
+
+    @Test
+    void addGrade() {
+        gradeServiceImpl.addGrade("Mathe", "2.0");
+        assertThat(gradeRepository.count()).isEqualTo(1);
+        gradeRepository.deleteAll();
+    }
+
+
+    @Test
+    void listAllGrades() {
+        gradeServiceImpl.addGrade("Mathe", "2.0");
+        assertThat(gradeServiceImpl.listAllGrades()).isNotEmpty();
+        gradeRepository.deleteAll();
+    }
 
 }
