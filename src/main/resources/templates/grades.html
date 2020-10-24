@@ -7,19 +7,44 @@
 
 <body>
 <div th:include="fragments/body :: nav"></div>
+<div class="container">
+    <table class="table table-hover table-bordered table-sm">
+        <thead>
+        <tr>
+            <th>Lecture</th>
+            <th>Grade</th>
+        </tr>
+        </thead>
+        <tbody>
 
+        <tr th:each="grade : ${gradeList}">
+            <td th:text=" ${grade.getLecture()}">
+            <td th:text=" ${grade.getGrade()}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<table class="table table-hover table-bordered table-sm">
-    <tbody>
-
-    <tr th:each="grade : ${gradeList}">
-        <td th:text=" ${grade.getLecture()}">
-        <td th:text=" ${grade.getGrade()}">
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+    <h5>Neue Noten eingeben</h5>
+    <form th:action="@{/add}" method="post" class="needs-valid">
+        <label for="lectureInput">Vorlesung:
+            <input class="form-control" id="lectureInput" type="text" name="lecture" minlength="1" maxlength="255"
+                   placeholder="Deutsch" required>
+        </label>
+        <label for="gradeInput">Note:
+            <input class="form-control" id="gradeInput" type="number" min="1" max="5" name="grade"
+                   placeholder="1.0"
+                   required>
+        </label> <br>
+        <input type="submit" class="btn btn-outline-primary btn-sm" value="Note eintragen">
+    </form>
+    <div class="valid-feedback">
+        Geht!
+    </div>
+    <div class="invalid-feedback">
+        Sie haben keinen Zahlenwert im Notenfeld eingegeben. Bitte geben Sie die korrekten Daten ein.
+    </div>
+</div>
 <div th:include="fragments/footer :: footer"></div>
 </body>
 </html>
