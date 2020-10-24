@@ -18,6 +18,6 @@ public class GradeControlller {
     public String listAllGrades(Model model) {
         List<Grade> gradeList = gradeService.listAllGrades();
         model.addAttribute("gradeList", gradeList);
-        return "grades.html";
+        return "grades";
     }
 }
