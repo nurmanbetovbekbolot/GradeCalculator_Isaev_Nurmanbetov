@@ -25,6 +25,8 @@
         </tbody>
     </table>
 
+    <h4 th:text="${'Notendurchschnitt: '+averageOfGrades}"></h4>
+
     <h5>Neue Noten eingeben</h5>
     <form th:action="@{/add}" method="post" class="needs-valid">
         <label for="lectureInput">Vorlesung:
