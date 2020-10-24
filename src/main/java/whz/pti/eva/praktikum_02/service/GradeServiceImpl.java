@@ -6,7 +6,6 @@ import whz.pti.eva.praktikum_02.domain.Grade;
 import whz.pti.eva.praktikum_02.domain.GradeRepository;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * The class GradeServiceImpl that implements GradeService interface.
@@ -26,19 +25,25 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public void addGrade(String lecture, String grade) {
-        Grade newGrade = new Grade();
-        newGrade.setGrade(grade);
-        newGrade.setLecture(lecture);
-        gradeRepository.save(newGrade);
+
+        if (Double.parseDouble(grade) >= 1.0 && Double.parseDouble(grade) <= 5.0) {
+            Grade newGrade = new Grade();
+            newGrade.setGrade(grade);
+            newGrade.setLecture(lecture);
+            gradeRepository.save(newGrade);
+        }
     }
 
     @Override
     public double calculateAverage() {
-
-        double sumOfGrades = listAllGrades().stream()
-                .map((x) -> Double.parseDouble(x.getGrade()))
-                .reduce((double) 0, Double::sum);
-
+        double sumOfGrades = 0;
+        if (listAllGrades().size() > 0) {
+            sumOfGrades = listAllGrades().stream()
+                    .map((x) -> Double.parseDouble(x.getGrade()))
+                    .reduce((double) 0, Double::sum);
+        } else {
+            return 0;
+        }
         return sumOfGrades / listAllGrades().size();
     }
 }
