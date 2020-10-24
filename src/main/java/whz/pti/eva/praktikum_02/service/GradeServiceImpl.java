@@ -6,6 +6,7 @@ import whz.pti.eva.praktikum_02.domain.Grade;
 import whz.pti.eva.praktikum_02.domain.GradeRepository;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * The class GradeServiceImpl that implements GradeService interface.
@@ -35,7 +36,7 @@ public class GradeServiceImpl implements GradeService {
     public double calculateAverage() {
 
         double sumOfGrades = listAllGrades().stream()
-                .map((x)->Double.parseDouble(x.getGrade()))
+                .map((x) -> Double.parseDouble(x.getGrade()))
                 .reduce((double) 0, Double::sum);
 
         return sumOfGrades / listAllGrades().size();
