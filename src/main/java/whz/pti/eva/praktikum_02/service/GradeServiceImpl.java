@@ -33,12 +33,11 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public double calculateAverage() {
-        List<Grade> allGrades = listAllGrades();
-        double sumOfGrades = 0;
-        for (Grade grade : allGrades) {
-            double temp = Double.parseDouble(grade.getGrade());
-            sumOfGrades += temp;
-        }
-        return sumOfGrades / allGrades.size();
+
+        double sumOfGrades = listAllGrades().stream()
+                .map((x)->Double.parseDouble(x.getGrade()))
+                .reduce((double) 0, Double::sum);
+
+        return sumOfGrades / listAllGrades().size();
     }
 }
