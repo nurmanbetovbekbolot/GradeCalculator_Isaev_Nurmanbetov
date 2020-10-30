@@ -29,14 +29,14 @@ public class InitializeDB {
      * where we create 2 grades and save them
      */
     @PostConstruct
-    public void init(){
+    public void init() {
         log.info("Initialize database ...");
-        Grade grade1= new Grade("Mate","2.0");
-        Grade grade2= new Grade("Englisch","1.0");
+        Grade grade1 = new Grade("Mate", "2.0");
+        Grade grade2 = new Grade("Englisch", "1.0");
         gradeRepository.save(grade1);
         gradeRepository.save(grade2);
-        log.info("To database added new grade "+grade1);
-        log.info("To database added new grade "+grade2);
+        log.info("To database added new grade " + grade1);
+        log.info("To database added new grade " + grade2);
     }
 
     /**
@@ -44,7 +44,7 @@ public class InitializeDB {
      * where we clear our database
      */
     @PreDestroy
-    public void clearDatabase(){
+    public void clearDatabase() {
         log.info("Clear database ...");
         gradeRepository.deleteAll();
         log.info("All rows in database were cleared ...");
