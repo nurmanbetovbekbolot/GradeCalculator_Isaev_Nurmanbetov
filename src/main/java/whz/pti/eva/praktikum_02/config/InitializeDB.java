@@ -7,11 +7,22 @@ import whz.pti.eva.praktikum_02.domain.GradeRepository;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * We use this class to add some grades to database
+ */
 @Component
 public class InitializeDB {
+
+    /**
+     * The Grade repository.
+     */
     @Autowired
     GradeRepository gradeRepository;
 
+    /**
+     * Init method
+     * where we create 2 grades and save them
+     */
     @PostConstruct
     public void init(){
         Grade grade1= new Grade("Mate","2.0");
