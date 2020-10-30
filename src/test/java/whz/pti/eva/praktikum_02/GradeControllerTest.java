@@ -46,6 +46,19 @@ public class GradeControllerTest {
                 .andDo(print());
     }
 
+    @Test
+    public void testAddGrades() throws Exception{
+
+        mockMvc.perform(post("/add")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .param("lecture", "Math")
+                .param("grade", "2.0")
+        )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("grades"));
+
+    }
+
 //    @Test
 //    public void getPosts() throws Exception {
 //        mockMvc.perform(get("/posts")
