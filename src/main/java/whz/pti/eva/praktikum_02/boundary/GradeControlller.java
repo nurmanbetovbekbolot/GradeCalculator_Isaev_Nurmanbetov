@@ -3,7 +3,6 @@ package whz.pti.eva.praktikum_02.boundary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +34,7 @@ public class GradeControlller {
         List<Grade> gradeList = gradeService.listAllGrades();
         Double averageOfGrades = gradeService.calculateAverage();
         model.addAttribute("gradeList", gradeList);
-        model.addAttribute("averageOfGrades",averageOfGrades);
+        model.addAttribute("averageOfGrades", averageOfGrades);
         return "grades";
     }
 

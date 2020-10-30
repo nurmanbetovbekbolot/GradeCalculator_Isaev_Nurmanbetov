@@ -1,5 +1,6 @@
 package whz.pti.eva.praktikum_02;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,6 +38,14 @@ class GradeCalculatorIsaevNurmanbetovApplicationTests {
     }
 
     /**
+     * Method to clean database before each test
+     */
+    @BeforeEach
+    void cleanDatabase(){
+        gradeRepository.deleteAll();
+    }
+
+    /**
      * Calculate average.
      */
     @Test
@@ -47,7 +56,6 @@ class GradeCalculatorIsaevNurmanbetovApplicationTests {
         gradeServiceImpl.addGrade("Wiss. Arbeiten", "1.0");
         double a = gradeServiceImpl.calculateAverage();
         assertThat(a).isEqualTo(2.0);
-        gradeRepository.deleteAll();
     }
 
     /**
@@ -57,7 +65,6 @@ class GradeCalculatorIsaevNurmanbetovApplicationTests {
     void addGrade() {
         gradeServiceImpl.addGrade("Mathe", "2.0");
         assertThat(gradeRepository.count()).isEqualTo(1);
-        gradeRepository.deleteAll();
     }
 
     /**
@@ -67,7 +74,6 @@ class GradeCalculatorIsaevNurmanbetovApplicationTests {
     void listAllGrades() {
         gradeServiceImpl.addGrade("Mathe", "2.0");
         assertThat(gradeServiceImpl.listAllGrades()).isNotEmpty();
-        gradeRepository.deleteAll();
     }
 
 }
