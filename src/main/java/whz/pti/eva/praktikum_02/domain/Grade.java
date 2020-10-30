@@ -106,4 +106,13 @@ public class Grade {
     public void setGrade(String grade) {
         this.grade = grade;
     }
+
+
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "lecture='" + lecture + '\'' +
+                ", grade='" + grade + '\'' +
+                '}';
+    }
 }
