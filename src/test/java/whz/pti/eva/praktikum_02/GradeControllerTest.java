@@ -27,7 +27,7 @@ import whz.pti.eva.praktikum_02.service.GradeServiceImpl;
 import java.util.List;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-@SpringBootTest //(classes = Eva03ChatApp.class) //(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public class GradeControllerTest {
 
     @Autowired
