@@ -22,6 +22,7 @@ import java.util.List;
  */
 @Controller
 public class GradeControlller {
+
     @Autowired
     private GradeService gradeService;
 
