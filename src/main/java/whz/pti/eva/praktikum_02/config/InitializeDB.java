@@ -6,6 +6,7 @@ import whz.pti.eva.praktikum_02.domain.Grade;
 import whz.pti.eva.praktikum_02.domain.GradeRepository;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 /**
  * We use this class to add some grades to database
@@ -29,5 +30,14 @@ public class InitializeDB {
         Grade grade2= new Grade("Englisch","1.0");
         gradeRepository.save(grade1);
         gradeRepository.save(grade2);
+    }
+
+    /**
+     * PreDestroy method
+     * where we clear our database
+     */
+    @PreDestroy
+    public void clearDatabase(){
+        gradeRepository.deleteAll();
     }
 }
