@@ -44,7 +44,7 @@ public class GradeServiceImpl implements GradeService {
     public double calculateAverage() {
         log.info("GradeService: Method 'calculateGrade' to calculate average of grades");
 
-        double sumOfGrades = 0;
+        double sumOfGrades;
         if (listAllGrades().size() > 0) {
             sumOfGrades = listAllGrades().stream()
                     .map((x) -> Double.parseDouble(x.getGrade()))
