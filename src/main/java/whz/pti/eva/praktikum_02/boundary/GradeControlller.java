@@ -5,13 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import whz.pti.eva.praktikum_02.config.InitializeDB;
 import whz.pti.eva.praktikum_02.domain.Grade;
 import whz.pti.eva.praktikum_02.service.GradeService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -66,5 +67,16 @@ public class GradeControlller {
         log.info("Redirecting to grades.html ...");
         return "redirect:grades";
 
+    }
+
+    /**
+     * This method to redirect from localhost:8080 to localhost:8080/grades
+     *
+     * @param request
+     * @return redirects to grades.html
+     */
+    @GetMapping("/")
+    public String root(HttpServletRequest request) {
+            return "redirect:/grades";
     }
 }

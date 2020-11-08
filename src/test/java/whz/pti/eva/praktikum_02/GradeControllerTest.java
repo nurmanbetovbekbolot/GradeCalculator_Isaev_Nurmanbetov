@@ -22,10 +22,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import whz.pti.eva.praktikum_02.domain.Grade;
-import whz.pti.eva.praktikum_02.service.GradeServiceImpl;
+import whz.pti.eva.praktikum_02.service.GradeService;
 
 import java.util.List;
 
+/**
+ * GradeControllerTest class for JUnit testing with Mock.
+ *
+ * @author Isaev A. Nurmanbetov B.
+ */
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @SpringBootTest
 public class GradeControllerTest {
@@ -34,19 +39,26 @@ public class GradeControllerTest {
     private WebApplicationContext wac;
 
     @MockBean
-    private GradeServiceImpl gradeService;
+    private GradeService gradeService;
 
     private MockMvc mockMvc;
 
+    /**
+     * Setup method BeforeEach test
+     */
     @BeforeEach
     public void setup() {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(wac)
                 .build();
-        when(gradeService.calculateAverage()).thenReturn(1.5);
         when(gradeService.listAllGrades()).thenReturn(List.of(new Grade(), new Grade()));
     }
 
+    /**
+     * Test method listAllGrades.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testListAllGrades() throws Exception {
         mockMvc.perform(get("/grades")
@@ -58,6 +70,11 @@ public class GradeControllerTest {
                 .andDo(print());
     }
 
+    /**
+     * Test method addGrades.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testAddGrades() throws Exception {
 
